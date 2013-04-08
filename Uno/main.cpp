@@ -6,19 +6,31 @@
 #include "uno.h"
 #include "generate_card.h"
 
+CARDSET CARDS[5];
 
 int main(int argc, const char * argv[])
 {
     CARD * cards;
     
-    cards = generateCards();
+	cards = generateCards();
     shuffleCards(cards);
-    int i;
-    for (i = 0; i < 108; i++) {
-        printf("%d COLOR %d NAME %d \n",i , cards[i].color, cards[i].name);
+	getIntoCardset(&CARDS[0], cards, 108);
+	// CARDS[0].cards = cards;
+
+	for (int i = 1; i<=4; i++) {
+        getIntoCardset(&CARDS[i], cards + (107-7*i), 7);
+		CARDS[0].size -= 7;
     }
+
+    for (int i = 1; i < 5; i++) {
+		for	(int j = 0; j < 7 ; j++)
+		{
+			printf("USER = %d ID = %d COLOR %d NAME %d \n",i , j , CARDS[i].cards[j].color, CARDS[i].cards[j].name);
     
-	Sleep(1000);
+		}
+	}
+    
+	system("pause");
 
     return 0;
 }

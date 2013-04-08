@@ -72,3 +72,12 @@ void shuffleCards(CARD * cards)
     }
     
 }
+
+void getIntoCardset(CARDSET * cardset, CARD * cards, int size)
+{
+    cardset->size = size;
+    int i;
+    for (i = 0; i<=size-1; i++) {
+        cardset->cards[i] = cards[i];
+    }
+}
