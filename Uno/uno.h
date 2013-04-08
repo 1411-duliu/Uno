@@ -18,5 +18,16 @@ struct CardSet {
 	int size;
 };
 
+struct State {
+	int direction;
+	int player;
+	int color;
+	int last_card;
+	int plus_two;
+	int plus_four;
+	int skip;
+};
+
 typedef struct Card CARD;
 typedef struct CardSet CARDSET;
+typedef struct State STATE;
