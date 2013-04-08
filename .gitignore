@@ -12,7 +12,6 @@ Thunbs.db
 *_i.c
 *_p.c
 *.ncb
-*.suo
 *.ipch
 *.tlb
 *.tlh
