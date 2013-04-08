@@ -13,6 +13,7 @@ Thunbs.db
 *_p.c
 *.ncb
 *.suo
+*.ipch
 *.tlb
 *.tlh
 *.bak
