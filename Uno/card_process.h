@@ -1,0 +1,1 @@
+CARDSET genCardToPlay(STATE game_state, CARDSET cards)
