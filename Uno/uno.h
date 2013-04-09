@@ -1,10 +1,15 @@
-#define NONE	10
-#define CALL	20
-#define REVERSE	100
-#define SKIP	101
-#define PLUS_2	102
-#define WILD	200
-#define PLUS_4	204
+#ifndef UNO_H
+#define UNO_H
+
+#define NONE 	10
+#define CALL		11
+#define REVERSE	12
+#define SKIP		13
+#define PLUS_2	14
+#define WILD		15
+#define PLUS_4	16
+
+#define PLAYER_NUM	4
 
 struct Card {
     int color;
@@ -16,5 +21,19 @@ struct CardSet {
 	int size;
 };
 
+struct State {
+	int direction;
+	int player;
+	int color;
+	int last_card;
+	int plus_two;
+	int plus_four;
+	int skip;
+	int penalty;
+};
+
 typedef struct Card CARD;
 typedef struct CardSet CARDSET;
+typedef struct State STATE;
+
+#endif
