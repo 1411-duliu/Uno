@@ -7,48 +7,43 @@
 #include "generate_card.h"
 #include "card_process.h"
 
+#include "utilities.h"
+
 CARDSET CARDS[5];
+STATE game_state;
+
+int main_state;
+
+void init_state()
+{
+	srand((unsigned int)time(NULL));
+	
+	game_state.color = rand() % 4 + 1;
+	game_state.direction = rand() % 2;
+	game_state.last_card = NONE;
+	game_state.penalty = 0;
+	game_state.player = rand() % PLAYER_NUM + 1;
+	game_state.plus_four = 0;
+	game_state.plus_two = 0;
+	game_state.skip = 0;
+}
+
+void init_game()
+{
+	CARD * cards = generateCards();
+    shuffleCards(cards);
+	getIntoCardset(&CARDS[0], cards, 108);
+	distributeCards(CARDS, CARDS[0], PLAYER_NUM);
+
+	init_state();
+}
 
 int main(int argc, const char * argv[])
 {
-    CARD * cards;
-    
-	cards = generateCards();
-    shuffleCards(cards);
-	getIntoCardset(&CARDS[0], cards, 108);
-	// CARDS[0].cards = cards;
-
-	for (int i = 1; i<=4; i++) {
-        getIntoCardset(&CARDS[i], cards + (107-7*i), 7);
-		CARDS[0].size -= 7;
-    }
-
-    for (int i = 1; i < 5; i++) {
-		for	(int j = 0; j < 7 ; j++)
-		{
-			printf("USER = %d ID = %d COLOR %d NAME %d \n",i , j , CARDS[i].cards[j].color, CARDS[i].cards[j].name);
-    
-		}
-	}
-
-	CARD card;
-	card.color = 1;
-	card.name = 1;
-
-	insertToCardset(&CARDS[1], card);
-	
-	deleteFromCardset(&CARDS[1], CARDS[1].cards[0]);
-
-	// printf("has this card %d\n", hasThisCard(CARDS[2], card));
-	printf("cardset size: %d\n", CARDS[1].size);
-
-	for	(int i = 1, j = 0; j < 8 ; j++)
-	{
-		printf("USER = %d ID = %d COLOR %d NAME %d \n",i , j , CARDS[i].cards[j].color, CARDS[i].cards[j].name);
-	}
+	init_game();
+	// printGameState(game_state);
 
 	system("pause");
 
     return 0;
 }
-

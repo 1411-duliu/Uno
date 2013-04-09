@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "uno.h"
 
 /*检查这张牌是否在牌组中*/

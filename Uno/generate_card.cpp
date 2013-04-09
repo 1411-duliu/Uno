@@ -81,3 +81,12 @@ void getIntoCardset(CARDSET * cardset, CARD * cards, int size)
         cardset->cards[i] = cards[i];
     }
 }
+
+void distributeCards(CARDSET cardset[], CARDSET from, int num)
+{
+	for (int i = 1; i<=4; i++) {
+		cardset[i].size = 7;
+		getIntoCardset(&cardset[i],  from.cards + (107-7*i), 7);
+		cardset[0].size -= 7;
+    }
+}

@@ -24,16 +24,22 @@
     <ClCompile Include="card_process.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="utilities.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="uno.h">
-      <Filter>源文件</Filter>
+    <ClInclude Include="card_process.h">
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="generate_card.h">
-      <Filter>源文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="card_process.h">
-      <Filter>源文件</Filter>
+    <ClInclude Include="utilities.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uno.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
