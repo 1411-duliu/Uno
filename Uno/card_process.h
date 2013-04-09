@@ -1,0 +1,2 @@
+
+CARD genCard(char * input);

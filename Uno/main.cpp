@@ -5,8 +5,8 @@
 
 #include "uno.h"
 #include "generate_card.h"
+#include "cardset_process.h"
 #include "card_process.h"
-
 #include "utilities.h"
 
 CARDSET CARDS[5];
@@ -42,6 +42,13 @@ int main(int argc, const char * argv[])
 {
 	init_game();
 	// printGameState(game_state);
+	CARD c;
+	char  input[10];
+	scanf("%s",input);
+
+	c=genCard(input);
+
+	printf("%d---%d",c.color,c.name);
 
 	system("pause");
 

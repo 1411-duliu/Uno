@@ -75,12 +75,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cardset_process.cpp" />
     <ClCompile Include="card_process.cpp" />
     <ClCompile Include="generate_card.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cardset_process.h" />
     <ClInclude Include="card_process.h" />
     <ClInclude Include="generate_card.h" />
     <ClInclude Include="uno.h" />
