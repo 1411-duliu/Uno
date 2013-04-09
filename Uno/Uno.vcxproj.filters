@@ -21,12 +21,18 @@
     <ClCompile Include="generate_card.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="card_process.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uno.h">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="generate_card.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="card_process.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@
 
 #include "uno.h"
 #include "generate_card.h"
+#include "card_process.h"
 
 CARDSET CARDS[5];
 
@@ -29,7 +30,23 @@ int main(int argc, const char * argv[])
     
 		}
 	}
-    
+
+	CARD card;
+	card.color = 1;
+	card.name = 1;
+
+	insertToCardset(&CARDS[1], card);
+	
+	deleteFromCardset(&CARDS[1], CARDS[1].cards[0]);
+
+	// printf("has this card %d\n", hasThisCard(CARDS[2], card));
+	printf("cardset size: %d\n", CARDS[1].size);
+
+	for	(int i = 1, j = 0; j < 8 ; j++)
+	{
+		printf("USER = %d ID = %d COLOR %d NAME %d \n",i , j , CARDS[i].cards[j].color, CARDS[i].cards[j].name);
+	}
+
 	system("pause");
 
     return 0;

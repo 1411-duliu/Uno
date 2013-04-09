@@ -4,7 +4,7 @@
 #include "uno.h"
 
 /*检查这张牌是否在牌组中*/
-int hasIsCard(CARDSET cards, CARD card){
+int hasThisCard(CARDSET cards, CARD card){
     int i,IsCard=0;
     CARD currentCard;
 
@@ -25,25 +25,28 @@ void insertToCardset(CARDSET * cards, CARD card){
     currentSize=cards->size;
     currentCard.color=card.color;
     currentCard.name=card.name;
-    cards->cards[currentSize]=currentCard;
+    cards->cards[currentSize - 1]=currentCard;
 }
 
 /*将牌从牌组中删除*/
 void deleteFromCardset(CARDSET * cards, CARD card){
-    int i,j,flag=0;
+    int i,j;
     CARD currentCard;
-    for(i=0;i<=cards->size-1,flag=0;i++){
+	
+    for(i=0; i<=cards->size-1; i++){
         currentCard=cards->cards[i];
-        if(card.color==currentCard.color&&card.name==currentCard.name){
-            flag=1;
+		printf("To delete: color %d, name %d.\n Now: color %d, name %d.\n", card.color, card.name, currentCard.color, currentCard.name);
+        if(card.color==currentCard.color&&card.name==currentCard.name){ 
             for(j=i;j<=cards->size-2;j++){
                 cards->cards[j]=cards->cards[j+1];
-                cards->size--;
             }
+
+			cards->size--;
+			return;
         }
     }
 
-    cards->size--;
+    
 }
 
 /*清空牌组*/
