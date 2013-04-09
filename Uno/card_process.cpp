@@ -79,7 +79,6 @@ CARDSET genCardToPlay(STATE game_state, CARDSET cards)  //得到当前可以出的牌
 			for (j=1;j<=cards.size;j++)
 			{
 				if (cards.cards[j].color==game_state.color)  //判断颜色
-			
 				{
 					cards_to_play.cards[i]=cards.cards[j];
 					i++;
