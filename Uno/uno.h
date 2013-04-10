@@ -9,6 +9,13 @@
 #define WILD		15
 #define PLUS_4	16
 
+#define CNONE	0
+#define GREEN	1
+#define RED		2
+#define	YELLOW	3
+#define	BLUE		4
+#define INVALID	1411
+
 #define PLAYER_NUM	4
 
 struct Card {

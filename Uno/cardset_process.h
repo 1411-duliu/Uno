@@ -1,5 +1,5 @@
-#ifndef CARD_PROC_H
-#define CARD_PROC_h
+#ifndef CARDSET_PROC_H
+#define CARDSET_PROC_H
 
 int hasThisCard(CARDSET,CARD);
 void insertToCardset(CARDSET*,CARD);

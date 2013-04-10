@@ -6,6 +6,7 @@
 #include "uno.h"
 #include "generate_card.h"
 #include "cardset_process.h"
+#include "card_process.h"
 
 #include "utilities.h"
 
@@ -42,6 +43,13 @@ int main(int argc, const char * argv[])
 {
 	init_game();
 	// printGameState(game_state);
+
+	STATE test_state = {1, 1, GREEN, PLUS_2, 1, 0, 0, 0};
+	CARDSET test_cardset, iCardset;
+	CARD cards[2] = {{GREEN,1}, {RED, PLUS_4}};
+	getIntoCardset(&test_cardset, cards, 2);
+	iCardset = genCardsToPlay(test_state, test_cardset);
+	printCardset(iCardset);
 
 	system("pause");
 
