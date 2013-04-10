@@ -90,3 +90,21 @@ void distributeCards(CARDSET cardset[], CARDSET from, int num)
 		cardset[0].size -= 7;
     }
 }
+
+STATE init_state()
+{
+	STATE game_state;
+
+	srand((unsigned int)time(NULL));
+	
+	game_state.color = rand() % 4 + 1;
+	game_state.direction = rand() % 2;
+	game_state.last_card = NONE;
+	game_state.penalty = 0;
+	game_state.player = rand() % PLAYER_NUM + 1;
+	game_state.plus_four = 0;
+	game_state.plus_two = 0;
+	game_state.skip = 0;
+
+	return game_state;
+}

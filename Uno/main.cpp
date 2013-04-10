@@ -12,20 +12,32 @@
 CARDSET CARDS[5];
 STATE game_state;
 
-int main_state;
+int main_state = 1;
 
-void init_state()
+CARD NONE_CARD = {CNONE, NONE};
+CARD INVALID_CARD = {CNONE, INVALID};
+CARD CALL_CARD = {CNONE, CALL};
+
+char input[1000];
+
+DWORD WINAPI inputThread(LPVOID pM)
 {
-	srand((unsigned int)time(NULL));
+	strcpy(input, "");
+	printf();
+	while (strlen(input) == 0)
+	{
+		scanf("%s", input);
+	}
+
+	return 0;
+}
+
+char * getInput()
+{
+	HANDLE handle = CreateThread(NULL, 0, inputThread, NULL, 0, NULL);
+	WaitForSingleObject(handle, INFINITE);
 	
-	game_state.color = rand() % 4 + 1;
-	game_state.direction = rand() % 2;
-	game_state.last_card = NONE;
-	game_state.penalty = 0;
-	game_state.player = rand() % PLAYER_NUM + 1;
-	game_state.plus_four = 0;
-	game_state.plus_two = 0;
-	game_state.skip = 0;
+	return input;
 }
 
 void init_game()
@@ -35,30 +47,43 @@ void init_game()
 	getIntoCardset(&CARDS[0], cards, 108);
 	distributeCards(CARDS, CARDS[0], PLAYER_NUM);
 
-	init_state();
+	game_state = init_state();
 }
 
 int main(int argc, const char * argv[])
 {
 	init_game();
 	// printGameState(game_state);
-	CARD c;
-	char  input[10];
-	scanf("%s",input);
+	int player;
 
-	c=genCard(input);
+	while (main_state != GAME_END)
+	{
+		player = game_state.player;
 
-	printf("%d---%d",c.color,c.name);
-	/*
-	
-	STATE test_state = {1, 1, GREEN, PLUS_2, 1, 0, 0, 0};
-	CARDSET test_cardset, iCardset;
-	CARD cards[2] = {{GREEN,1}, {RED, PLUS_4}};
-	getIntoCardset(&test_cardset, cards, 2);
-	iCardset = genCardsToPlay(test_state, test_cardset);
-	printCardset(iCardset);
-	
-	*/
+		if (main_state == ROUND_START)
+		{
+			CARDSET cards_to_play = genCardsToPlay(game_state, CARDS[player]);
+			printCardset(cards_to_play);
+			if (hasThisCard(cards_to_play, NONE_CARD) && cards_to_play.size == 1)
+			{
+				// 如果可出的牌中只有1张NONE，那么不能出牌
+				printf("本局不能出牌，进入结算阶段。");
+				Sleep(2000);
+				main_state = SETTLE; // 进入结算状态
+				continue;
+			}
+			main_state = PLAY_CARD;
+		}
+		else if (main_state == PLAY_CARD)
+		{
+			CARD card;
+			while (isValid(card = genCard(getInput())));
+			printf("\nInput: %s\n", cardToStr(card));
+
+			break;
+		}
+	}
+
 	system("pause");
 
     return 0;

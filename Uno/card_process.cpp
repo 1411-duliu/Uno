@@ -8,7 +8,7 @@
 char  *stdcolor[]={"NONE","GREEN","RED","YELLOW","BLUE"};
 char  *stdface[]={"0","1","2","3","4","5","6","7","8","9","NONE","CALL","REVERSE","SKIP","PLUS2","PLUS4","WILD"};
 
-int isNormalCard(CARD card)  //判断是否是普通牌
+int isNormalCard(CARD card) //判断是否是普通牌
 {
 	if (card.name<=9&&card.name>=0)
 		return 1;
@@ -16,7 +16,7 @@ int isNormalCard(CARD card)  //判断是否是普通牌
 }
 
 
-int isFuncCard(CARD card)    //判断是否是功能牌
+int isFuncCard(CARD card) //判断是否是功能牌
 {
 	if (card.name<=14&&card.name>=12)
 		return 1;
@@ -24,13 +24,17 @@ int isFuncCard(CARD card)    //判断是否是功能牌
 }
 
 
-int isWildCard(CARD card)    //判断是否是万能牌
+int isWildCard(CARD card) //判断是否是万能牌
 {
 	if (card.name>14)
 		return 1;
 	return 0;
 }
 
+int isValid(CARD card)
+{
+	return !(card.color == CNONE && card.name == INVALID);
+}
 
 CARDSET genCardsToPlay(STATE game_state, CARDSET cards)  //得到当前可以出的牌
 {

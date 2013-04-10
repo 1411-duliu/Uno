@@ -18,6 +18,12 @@
 
 #define PLAYER_NUM	4
 
+#define ROUND_START	1
+#define PLAY_CARD	2
+#define	SETTLE		3
+#define ROUND_END	4
+#define	GAME_END		5
+
 struct Card {
     int color;
     int name;
