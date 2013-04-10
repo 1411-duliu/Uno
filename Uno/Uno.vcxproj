@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ai_Simple.cpp" />
     <ClCompile Include="cardset_process.cpp" />
     <ClCompile Include="card_process.cpp" />
     <ClCompile Include="generate_card.cpp" />

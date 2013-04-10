@@ -25,10 +25,13 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="cardset_process.cpp">
-	<Filter>源文件</Filter>
+      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="card_process.cpp">
-	<Filter>源文件</Filter>
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ai_Simple.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,5 +50,5 @@
     <ClInclude Include="card_process.h">
       <Filter>头文件</Filter>
     </ClInclude>
-   </ItemGroup>
+  </ItemGroup>
 </Project>
