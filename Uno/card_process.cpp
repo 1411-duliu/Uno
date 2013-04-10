@@ -8,9 +8,6 @@
 char  *stdcolor[]={"NONE","GREEN","RED","YELLOW","BLUE"};
 char  *stdface[]={"0","1","2","3","4","5","6","7","8","9","NONE","CALL","REVERSE","SKIP","PLUS2","PLUS4","WILD"};
 
-
-
-
 CARD genCard(char * input)
 {
 	CARD card;
