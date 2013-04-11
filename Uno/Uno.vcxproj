@@ -82,6 +82,7 @@
     <ClCompile Include="generate_card.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="user_input.cpp" />
+    <ClCompile Include="user_interface.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +93,7 @@
     <ClInclude Include="generate_card.h" />
     <ClInclude Include="uno.h" />
     <ClInclude Include="user_input.h" />
+    <ClInclude Include="user_interface.h" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

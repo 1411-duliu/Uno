@@ -2,98 +2,108 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "uno"
+#include "uno.h"
+#include "utilities.h"
+#include "card_process.h"
+#include "user_input.h"
+#include "cardset_process.h"
 
-char  *stdcolor[]={"CNONE","GREEN","RED","YELLOW","BLUE"};
+int color;
+
+void changeColor(STATE * game_state, int color)
+{
+	game_state->color = color;
+}
+
 
 void skip(STATE *game_state)
 {
-        game_state->skip=1;
+	game_state->skip=1;
 }
 
 
 void reverse(STATE *game_state)
 {
-        switch(game_state->direction)
-        {
-            case 0:
-                game_state->direction=1;
-                break;
-            case 1:
-                game_state->direction=0;
-                break;
-        }
+	switch(game_state->direction)
+	{
+		case 0:
+			game_state->direction=1;
+			break;
+		case 1:
+			game_state->direction=0;
+			break;
+	}
 }
 
 void plus_two(STATE *game_state)
 {
-        game_state->plus_2=1;
-        game_state->penalty+=2;
+	game_state->plus_two=1;
+	game_state->penalty+=2;
 }
 
-
-
-void plus_four(STATE *game_state)
+void plus_four(STATE * game_state)
 {
-        char chancol[];
-	
-		game_state->plus_4=1;
-        game_state->plus_2=0;
-        game_state->penalty+=4;
+	char chanclo[10];
 
-		scanf("%s",chanclo);
-        if((strcmp(chanclo,*(stdcolor+1)))==1)
-        {
-            game_state->color=1;
-        }
-        else if((strcmp(chanclo,*(stdcolor+2)))==1)
-        {
-            game_state->color=2;
-        }
-        else if((strcmp(chanclo,*(stdcolor+3)))==1)
-        {
-            game_state->color=3;
-        }
-        else if((strcmp(chanclo,*(stdcolor+4)))==1)
-        {
-            game_state->color=4;
-        }
+	game_state->plus_four=1;
+	game_state->plus_two=0;
+    game_state->penalty+=4;
+
+	while ((color = getColor()) <= 0);
+
+	changeColor(game_state, color);
+
 }
-
 
 void wild(STATE *game_state)
 {
-        char chancol[];
-        scanf("%s",chanclo);
-        if((strcmp(chanclo,*(stdcolor+1)))==1)
-        {
-            game_state->color=1;
-        }
-        else if((strcmp(chanclo,*(stdcolor+2)))==1)
-        {
-            game_state->color=2;
-        }
-        else if((strcmp(chanclo,*(stdcolor+3)))==1)
-        {
-            game_state->color=3;
-        }
-        else if((strcmp(chanclo,*(stdcolor+4)))==1)
-        {
-            game_state->color=4;
-        }
+	char chanclo[10];
+
+	while ((color = getColor()) <= 0);
+	changeColor(game_state, color);
+}
+
+void call(CARDSET * cardset, CARDSET * player, int n)
+{
+    for(int i = 1; i <= n; i++)
+    {
+		insertToCardset(player, cardset->cards[cardset->size - 1]);
+		cardset->size--;
+	}
 }
 
 void none_card(STATE *game_state,CARDSET *cardset,CARDSET *player)
 {
-            int n,i,k,g;
-            n=game_state->penalty;
-            g=player->size;
-            for(i=1;i<=n;i++)
-            {
-                k=cardset->size;
-                player->cards[g+i]->color=cardset->card[k]->color;
-                player->cards[g+i]->name=cardset->card[k]->name;
-                cardset->cards[k]={0,0};
-                cardset->size--;
-            }
+    call(cardset, player, game_state->penalty);
+
+	game_state->plus_two = 0;
+	game_state->penalty = 0;
+	game_state->plus_four = 0;
 }
+
+void settle(STATE * game_state, CARD card, CARDSET * player_cards, CARDSET * all_cards)
+{
+	if (!(card.name == CALL || card.name == NONE))
+		deleteFromCardset(player_cards, card);
+
+	if (isWildCard(card))
+	{
+		if (card.name == PLUS_4) plus_four(game_state);
+		if (card.name == WILD) wild(game_state);
+	}
+
+	if (isFuncCard(card) || isNormalCard(card))
+	{
+		if (card.name == REVERSE) reverse(game_state);
+		if (card.name == PLUS_2) plus_two(game_state);
+		if (card.name == SKIP) skip(game_state);
+
+		game_state->color = card.color;
+		game_state->last_card = card.name;
+	}
+
+	if (card.name == CALL) call(all_cards, player_cards, 1);
+	if (card.name == NONE) none_card(game_state, all_cards, player_cards);
+
+}
+

@@ -8,8 +8,8 @@
 CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards)
 //cardset给入当前出牌玩家手牌，cards给入当前可出手牌
 {
-    CARD card={0,0},currentCard,emptyCard;
-    int i,j,size,temp,isFunction=0;
+    CARD card={0,0},currentCard;
+    int i,j,temp,isFunction=0;
     int count_Function=0,count_Num=0;
     int count_Color[5],array[5]={0,1,2,3,4};
 

@@ -70,3 +70,14 @@ char * playCardMsg(int player, CARD card)
 
 	return msg;
 }
+
+int strToColor(char * str)
+{
+	for (int i = 0; i <= 4; i++)
+	{
+		if (strcmp(COLORS[i], str) == 1)
+			return i;
+	}
+
+	return -1;
+}

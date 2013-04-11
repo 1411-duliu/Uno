@@ -39,6 +39,9 @@
     <ClCompile Include="ai_simple.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="user_interface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="generate_card.h">
@@ -63,6 +66,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ai_simple.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="user_interface.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,7 @@
 #include "card_process.h"
 #include "utilities.h"
 #include "user_input.h"
+#include "user_interface.h"
 
 CARDSET CARDS[5];
 STATE game_state;
@@ -36,103 +37,6 @@ void init_game()
 	game_state = init_state();
 }
 
-void addMsg(char * msg)
-{
-	WaitForSingleObject(messageListMutex, INFINITE);
-
-	MSGLISTNODEPTR newPtr;
-
-	newPtr = (MSGLISTNODEPTR)malloc(sizeof(MSGLISTNODE));
-	newPtr->msg = (char *)malloc(sizeof(char) * strlen(msg));
-	strcpy(newPtr->msg, msg);
-	newPtr->nextPtr = NULL;
-
-	if (msgListPtr == NULL)
-	{
-		msgListPtr = newPtr;
-		msgListTailPtr = msgListPtr;
-	}
-	else
-	{
-		msgListTailPtr->nextPtr = newPtr;
-		msgListTailPtr = newPtr;
-	}
-
-	ReleaseMutex(messageListMutex);
-}
-
-void delMsg()
-{
-	if (msgListPtr != NULL)
-	{
-		while (msgListPtr != NULL)
-		{
-			MSGLISTNODEPTR tmp;
-
-			tmp = msgListPtr;
-			msgListPtr = msgListPtr->nextPtr;
-			tmp->nextPtr = NULL;
-			free(tmp);
-		}
-	}
-
-}
-
-void printMsg()
-{
-	WaitForSingleObject(messageListMutex, INFINITE);
-	MSGLISTNODEPTR currentPtr = msgListPtr, tmp;
-	
-	printf("消息列表:\n");
-	while (currentPtr != NULL)
-	{
-		printf("Msg: %s\n", currentPtr->msg);
-		currentPtr = currentPtr->nextPtr;
-		
-	}
-	printf("----------------\n");
-
-	ReleaseMutex(messageListMutex);
-}
-
-void printUI()
-{
-	
-	printGameState(game_state);
-	printf("你的手牌列表：\n");
-	printCardset(CARDS[game_state.player]);
-	if(cards_to_play.size > 0)
-	{
-		printf("你可以出下列牌：\n");
-		printCardset(cards_to_play);
-	}
-}
-
-DWORD WINAPI userInterfaceThread(LPVOID pM)
-{
-	while (main_state != GAME_END)
-	{
-		system("cls");
-		
-		switch (main_state)
-		{
-			case ROUND_START:
-				printUI();
-				Sleep(100);
-				while(main_state != PLAY_CARD);
-				break;
-		
-			case PLAY_CARD:
-				printUI();
-				Sleep(1000);
-				
-				WaitForSingleObject(inputMutex, INFINITE);
-				break;
-		}
-	}
-
-	return 0;
-}
 
 int main(int argc, const char * argv[])
 {
@@ -167,17 +71,14 @@ int main(int argc, const char * argv[])
 		else if (main_state == PLAY_CARD)
 		{
 			CARD card;
-			// 等待用户选择，如果选择不合法则循环。
-			inputMutex = CreateMutex(NULL, TRUE, NULL);
+
 			// WaitForSingleObject(inputMutex, INFINITE);
 			while (!(isValid(card = genCard(getInput())) && hasThisCard(cards_to_play, card)))
 			{
 				addMsg("输入不合法，请重新输入。");
-				ReleaseMutex(inputMutex);
 				Sleep(1000);
-				inputMutex = CreateMutex(NULL, TRUE, NULL);
 			}
-			ReleaseMutex(inputMutex);
+			
 			
 			addMsg(playCardMsg(game_state.player, card));
 			
