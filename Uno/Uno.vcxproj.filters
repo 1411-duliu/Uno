@@ -33,6 +33,9 @@
     <ClCompile Include="user_input.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="func_card.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="generate_card.h">
@@ -51,6 +54,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="user_input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="func_card.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
