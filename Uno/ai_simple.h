@@ -1,0 +1,1 @@
+CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards);
