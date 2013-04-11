@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClCompile Include="cardset_process.cpp" />
     <ClCompile Include="card_process.cpp" />
+    <ClCompile Include="func_card.cpp" />
     <ClCompile Include="generate_card.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="user_input.cpp" />
@@ -85,6 +86,7 @@
   <ItemGroup>
     <ClInclude Include="cardset_process.h" />
     <ClInclude Include="card_process.h" />
+    <ClInclude Include="func_card.h" />
     <ClInclude Include="generate_card.h" />
     <ClInclude Include="uno.h" />
     <ClInclude Include="user_input.h" />
