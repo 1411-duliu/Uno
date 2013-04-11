@@ -95,29 +95,37 @@ void printMsg()
 	ReleaseMutex(messageListMutex);
 }
 
+void printUI()
+{
+	
+	printGameState(game_state);
+	printf("你的手牌列表：\n");
+	printCardset(CARDS[game_state.player]);
+	if(cards_to_play.size > 0)
+	{
+		printf("你可以出下列牌：\n");
+		printCardset(cards_to_play);
+	}
+}
+
 DWORD WINAPI userInterfaceThread(LPVOID pM)
 {
 	while (main_state != GAME_END)
 	{
 		system("cls");
+		
 		switch (main_state)
 		{
 			case ROUND_START:
-				printMsg();
-				printf("你的手牌列表：\n");
-				printCardset(CARDS[game_state.player]);
+				printUI();
 				Sleep(100);
+				while(main_state != PLAY_CARD);
 				break;
 		
 			case PLAY_CARD:
-				printMsg();
-
-				printGameState(game_state);
-				printf("你的手牌列表：\n");
-				printCardset(CARDS[game_state.player]);
-				printf("你可以出下列牌：\n");
-				printCardset(cards_to_play);
-				Sleep(100);
+				printUI();
+				Sleep(1000);
+				
 				WaitForSingleObject(inputMutex, INFINITE);
 				break;
 		}
@@ -153,7 +161,7 @@ int main(int argc, const char * argv[])
 				main_state = GAME_END; // 进入结算状态
 				continue;
 			}
-			Sleep(3000);
+			Sleep(1000);
 			main_state = PLAY_CARD;
 		}
 		else if (main_state == PLAY_CARD)
@@ -169,9 +177,9 @@ int main(int argc, const char * argv[])
 				Sleep(1000);
 				inputMutex = CreateMutex(NULL, TRUE, NULL);
 			}
+			ReleaseMutex(inputMutex);
 			
-			
-			printf("\nInput: %s\n", cardToStr(card));
+			addMsg(playCardMsg(game_state.player, card));
 			
 			main_state = GAME_END;
 			clearCardset(&cards_to_play);
