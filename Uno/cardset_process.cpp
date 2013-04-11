@@ -44,8 +44,6 @@ void deleteFromCardset(CARDSET * cards, CARD card){
 			return;
         }
     }
-
-    
 }
 
 /*Çå¿ÕÅÆ×é*/

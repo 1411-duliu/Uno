@@ -126,7 +126,9 @@ CARD genCard(char * input)
     char  face[10];
     char *r=",",*Ptr,c=',';
 
-	if((Ptr=strchr(input,c))!=NULL){   //判断输入的字符串中是否存在逗号，如果存在将地址赋给Ptr
+	if((Ptr=strchr(input,c))!=NULL)
+	{   
+		//判断输入的字符串中是否存在逗号，如果存在将地址赋给Ptr
         n=strcspn(input,r);  //判断逗号是数组中第几个，赋给整形变量n
         strncpy(color,input,n); //从content数组开始复制n为到color中，即为输入的颜色
         color[n]='\0';
@@ -139,24 +141,24 @@ CARD genCard(char * input)
 			{
 				for(k=0;k<=16;k++)
 				{
-					    if((g=strcmp(*(stdface+k),face))==0)  //判断face中字符与标准中是否相等
-						{           
-							x=1;
-							for(a=0;a<=4;a++)
-							{                          //分别在标颜色，标面值中判断是第几个并更改card数值
-									if((b=strcmp(*(stdcolor+a),color))==0)
-									{
-											 card.color=a;
-									}
-							}
-							for(a=0;a<=16;a++)
+					if((g=strcmp(*(stdface+k),face))==0)  //判断face中字符与标准中是否相等
+					{           
+						x=1;
+						for(a=0;a<=4;a++)
+						{                          //分别在标颜色，标面值中判断是第几个并更改card数值
+							if((b=strcmp(*(stdcolor+a),color))==0)
 							{
-									if((b=strcmp(*(stdface+a),face))==0)
-									{
-											 card.name=a;
-									}
-							}     
+								card.color=a;
+							}
 						}
+						for(a=0;a<=16;a++)
+						{
+							if((b=strcmp(*(stdface+a),face))==0)
+							{
+								card.name=a;
+							}
+						}     
+					}
 				}
 			}
 		}

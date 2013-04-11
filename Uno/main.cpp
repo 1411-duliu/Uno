@@ -23,7 +23,7 @@ char input[1000];
 DWORD WINAPI inputThread(LPVOID pM)
 {
 	strcpy(input, "");
-	printf();
+
 	while (strlen(input) == 0)
 	{
 		scanf("%s", input);
@@ -55,14 +55,15 @@ int main(int argc, const char * argv[])
 	init_game();
 	// printGameState(game_state);
 	int player;
+	CARDSET cards_to_play;
 
 	while (main_state != GAME_END)
 	{
 		player = game_state.player;
-
+		
 		if (main_state == ROUND_START)
 		{
-			CARDSET cards_to_play = genCardsToPlay(game_state, CARDS[player]);
+			cards_to_play = genCardsToPlay(game_state, CARDS[player]);
 			printCardset(cards_to_play);
 			if (hasThisCard(cards_to_play, NONE_CARD) && cards_to_play.size == 1)
 			{
@@ -77,7 +78,14 @@ int main(int argc, const char * argv[])
 		else if (main_state == PLAY_CARD)
 		{
 			CARD card;
-			while (isValid(card = genCard(getInput())));
+			
+			while (!(isValid(card = genCard(getInput())) && hasThisCard(cards_to_play, card)))
+			{
+				system("cls");
+				printf("输入不合法，请重新输入。\n");
+				printCardset(cards_to_play);
+			}
+			
 			printf("\nInput: %s\n", cardToStr(card));
 
 			break;
