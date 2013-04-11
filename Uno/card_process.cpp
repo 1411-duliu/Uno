@@ -79,7 +79,7 @@ void genCardsToPlay(CARDSET * cards_to_play, STATE game_state, CARDSET cards)  /
 		{
 			for (j=0;j<cards.size;j++)
 			{
-				if (cards.cards[j].color==game_state.color)  //判断颜色
+				if (cards.cards[j].color==game_state.color || cards.cards[j].color == CNONE)  //判断颜色
 				{
 					insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆
 				}

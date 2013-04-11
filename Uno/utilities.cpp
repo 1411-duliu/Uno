@@ -12,6 +12,7 @@ void printGameState(STATE game_state)
 	printf("--> Basic State\n");
 	printf("direction: %d\n", game_state.direction);
 	printf("color: %s\n", COLORS[game_state.color]);
+	printf("card: %s\n", COLORS[game_state.last_card]);
 	printf("player: %d\n", game_state.player);
 	printf("--> Penalties\n");
 	printf("plus_two: %d\n", game_state.plus_two);

@@ -45,8 +45,15 @@ struct State {
 	int penalty;
 };
 
+struct MsgListNode {
+	char * msg;
+	struct MsgListNode * nextPtr;
+};
+
 typedef struct Card CARD;
 typedef struct CardSet CARDSET;
 typedef struct State STATE;
+typedef struct MsgListNode MSGLISTNODE;
+typedef MSGLISTNODE * MSGLISTNODEPTR;
 
 #endif

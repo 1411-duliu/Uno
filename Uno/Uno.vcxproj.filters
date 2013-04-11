@@ -25,10 +25,13 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="cardset_process.cpp">
-	<Filter>源文件</Filter>
+      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="card_process.cpp">
-	<Filter>源文件</Filter>
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="user_input.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,5 +50,8 @@
     <ClInclude Include="card_process.h">
       <Filter>头文件</Filter>
     </ClInclude>
-   </ItemGroup>
+    <ClInclude Include="user_input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
