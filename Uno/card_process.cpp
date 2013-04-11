@@ -4,6 +4,7 @@
 
 #include "uno.h"
 #include "cardset_process.h"
+#include "utilities.h"
 
 char  *stdcolor[]={"NONE","GREEN","RED","YELLOW","BLUE"};
 char  *stdface[]={"0","1","2","3","4","5","6","7","8","9","NONE","CALL","REVERSE","SKIP","PLUS2","PLUS4","WILD"};
@@ -36,34 +37,32 @@ int isValid(CARD card)
 	return !(card.color == CNONE && card.name == INVALID);
 }
 
-CARDSET genCardsToPlay(STATE game_state, CARDSET cards)  //得到当前可以出的牌
+void genCardsToPlay(CARDSET * cards_to_play, STATE game_state, CARDSET cards)  //得到当前可以出的牌
 {
-	CARDSET cards_to_play;
-	clearCardset(&cards_to_play); // 初始化新牌组
 	int i=0, j=1;
+	
+	clearCardset(cards_to_play);   // 初始化新牌组
+	CARD none;
 
-	if (game_state.skip==0) //判断是否跳过
+	none.color=0;					//用none代替NONE
+	none.name=10;
+
+	if (game_state.skip==0)         //判断是否跳过
 	{
-		if (game_state.plus_two==1)  //判断是否+2
+		if (game_state.plus_two==1) //判断是否+2
 		{
 			for (j=0;j<cards.size;j++)
 			{
-				if (cards.cards[j].name==14)  //有无+2 
+				if (cards.cards[j].name==14)						 //有无+2 
 				{
-					cards_to_play.cards[i]=cards.cards[j];  //加入可出牌堆 
-					i++;
+					insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆 
 				}
-				else if (cards.cards[j].name==16)  //有无+4
+				else if (cards.cards[j].name==16)				   	 //有无+4
 				{
-					cards_to_play.cards[i]=cards.cards[j];  //加入可出牌堆
-					i++;
+					insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆
 				}
 			}
-			
-			//NONE加入可出牌堆
-			cards_to_play.cards[i].color=0;
-			cards_to_play.cards[i].name=10;
-			i++;
+			insertToCardset(cards_to_play,none);          //NONE加入可出牌堆
 		}
 		else if (game_state.plus_four==1)  //判断是否+4
 		{
@@ -71,14 +70,10 @@ CARDSET genCardsToPlay(STATE game_state, CARDSET cards)  //得到当前可以出的牌
 			{
 				if (cards.cards[j].name==16)  //有无+4
 				{
-					cards_to_play.cards[i]=cards.cards[j];  //加入可出牌堆
-					i++;
+					insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆
 				}
 			}
-			//NONE加入可出牌堆
-			cards_to_play.cards[i].color=0;
-			cards_to_play.cards[i].name=10;
-			i++;
+			insertToCardset(cards_to_play,none);          //NONE加入可出牌堆
 		}
 		else  //普通牌
 		{
@@ -86,34 +81,25 @@ CARDSET genCardsToPlay(STATE game_state, CARDSET cards)  //得到当前可以出的牌
 			{
 				if (cards.cards[j].color==game_state.color)  //判断颜色
 				{
-					cards_to_play.cards[i]=cards.cards[j];
-					i++;
+					insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆
 				}
 				else if (cards.cards[j].name==game_state.last_card)     //判断数字
 				{
-					if (hasThisCard(cards_to_play,cards.cards[j])==0)   //颜色，数字是否有重复
+					if (hasThisCard(*cards_to_play,cards.cards[j])==0)   //颜色，数字是否有重复
 					{
-						cards_to_play.cards[i]=cards.cards[j];
-						i++;
+						insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆
 					}
 				}
 			}
-			//NONE加入可出牌堆
-			cards_to_play.cards[i].color=0;
-			cards_to_play.cards[i].name=11;
+			
+			cards_to_play->cards[i].color=0;								//CALL加入可出牌堆
+			cards_to_play->cards[i].name=11;
 			i++;
 		}
 	}
-	else  //NONE加入可出牌堆
-	{
-		cards_to_play.cards[i].color=0;
-		cards_to_play.cards[i].name=10;
-		i++;
-	}
+	else
+		insertToCardset(cards_to_play,none);          //NONE加入可出牌堆
 
-	cards_to_play.size = i;
-
-	return cards_to_play;
 }
 
 CARD genCard(char * input)
