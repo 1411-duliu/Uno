@@ -14,6 +14,8 @@ extern CARDSET cards_to_play;
 extern HANDLE inputMutex, messageListMutex;
 extern MSGLISTNODEPTR msgListPtr, msgListTailPtr;
 
+extern CARD card;
+
 void addMsg(char * msg)
 {
 	WaitForSingleObject(messageListMutex, INFINITE);
@@ -88,10 +90,10 @@ void printUI()
 
 DWORD WINAPI userInterfaceThread(LPVOID pM)
 {
-	while (main_state != GAME_END)
+	while (main_state != 6)
 	{
 		system("cls");
-		
+		printMsg();
 		switch (main_state)
 		{
 			case ROUND_START:
@@ -105,6 +107,28 @@ DWORD WINAPI userInterfaceThread(LPVOID pM)
 				Sleep(1000);
 				
 				WaitForSingleObject(inputMutex, INFINITE);
+				break;
+
+			case SETTLE:
+				printf("玩家 %d 打出了 %s.\n", game_state.player, cardToStr(card));
+				while (main_state != ROUND_END) 
+				{
+					Sleep(100);
+				}
+				// printf("下面回合结束。");
+				break;
+
+			case ROUND_END:
+				Sleep(10);
+				while (main_state == ROUND_END);
+				printf("本回合结束，下面由 %d 玩家出牌。", game_state.player);
+				Sleep(1000);
+				break;
+
+			case GAME_END:
+				Sleep(10);
+				printf("玩家 %d 赢得了本局比赛。");
+				main_state = 6;
 				break;
 		}
 	}

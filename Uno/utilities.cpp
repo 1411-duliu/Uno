@@ -12,7 +12,7 @@ void printGameState(STATE game_state)
 	printf("--> Basic State\n");
 	printf("direction: %d\t", game_state.direction);
 	printf("color: %s\t", COLORS[game_state.color]);
-	printf("card: %s\t\t", NAMES[game_state.last_card]);
+	printf("card: %s\t", NAMES[game_state.last_card]);
 	printf("player: %d\n", game_state.player);
 	printf("--> Penalties\n");
 	printf("plus_two: %d\t", game_state.plus_two);
@@ -75,7 +75,7 @@ int strToColor(char * str)
 {
 	for (int i = 0; i <= 4; i++)
 	{
-		if (strcmp(COLORS[i], str) == 1)
+		if (!strcmp(COLORS[i], str))
 			return i;
 	}
 

@@ -34,7 +34,7 @@ void deleteFromCardset(CARDSET * cards, CARD card){
 	
     for(i=0; i<=cards->size-1; i++){
         currentCard=cards->cards[i];
-		printf("To delete: color %d, name %d.\n Now: color %d, name %d.\n", card.color, card.name, currentCard.color, currentCard.name);
+		// printf("To delete: color %d, name %d.\n Now: color %d, name %d.\n", card.color, card.name, currentCard.color, currentCard.name);
         if(card.color==currentCard.color&&card.name==currentCard.name){ 
             for(j=i;j<=cards->size-2;j++){
                 cards->cards[j]=cards->cards[j+1];

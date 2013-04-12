@@ -7,6 +7,7 @@
 #include "card_process.h"
 #include "user_input.h"
 #include "cardset_process.h"
+#include "user_interface.h"
 
 int color;
 
@@ -69,6 +70,8 @@ void call(CARDSET * cardset, CARDSET * player, int n)
     {
 		insertToCardset(player, cardset->cards[cardset->size - 1]);
 		cardset->size--;
+
+		addMsg("╫пеф1уе");
 	}
 }
 
@@ -79,6 +82,7 @@ void none_card(STATE *game_state,CARDSET *cardset,CARDSET *player)
 	game_state->plus_two = 0;
 	game_state->penalty = 0;
 	game_state->plus_four = 0;
+	game_state->skip = 0;
 }
 
 void settle(STATE * game_state, CARD card, CARDSET * player_cards, CARDSET * all_cards)

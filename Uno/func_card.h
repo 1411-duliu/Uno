@@ -8,5 +8,6 @@ void plus_four(STATE *);
 void wild(STATE *);
 void none_card(STATE *,CARDSET *,CARDSET *);
 void changeColor(STATE * game_state, int color);
+void settle(STATE * game_state, CARD card, CARDSET * player_cards, CARDSET * all_cards);
 
 #endif
