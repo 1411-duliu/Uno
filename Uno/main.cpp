@@ -47,8 +47,8 @@ int main(int argc, const char * argv[])
 	HANDLE uiThread = CreateThread(NULL, 0, userInterfaceThread, NULL, 0, NULL);
 	
 	messageListMutex = CreateMutex(NULL, FALSE, NULL);
-	
 
+	
 	while (main_state != GAME_END)
 	{
 		player = game_state.player;

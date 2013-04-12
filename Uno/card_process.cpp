@@ -42,10 +42,13 @@ void genCardsToPlay(CARDSET * cards_to_play, STATE game_state, CARDSET cards)  /
 	int i=0, j=1;
 	
 	clearCardset(cards_to_play);   // 初始化新牌组
-	CARD none;
+	CARD none, call;
 
 	none.color=0;					//用none代替NONE
 	none.name=10;
+	call.color=0;					//用call代替CALL
+	call.name=11;
+
 
 	if (game_state.skip==0)         //判断是否跳过
 	{
@@ -85,16 +88,11 @@ void genCardsToPlay(CARDSET * cards_to_play, STATE game_state, CARDSET cards)  /
 				}
 				else if (cards.cards[j].name==game_state.last_card)     //判断数字
 				{
-					if (hasThisCard(*cards_to_play,cards.cards[j])==0)   //颜色，数字是否有重复
-					{
-						insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆
-					}
+					insertToCardset(cards_to_play,cards.cards[j]);  //加入可出牌堆
 				}
 			}
 			
-			cards_to_play->cards[i].color=0;								//CALL加入可出牌堆
-			cards_to_play->cards[i].name=11;
-			i++;
+			insertToCardset(cards_to_play,call);					//CALL加入可出牌组
 		}
 	}
 	else

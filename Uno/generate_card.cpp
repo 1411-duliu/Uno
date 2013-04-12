@@ -99,7 +99,7 @@ STATE init_state()
 	
 	game_state.color = rand() % 4 + 1;
 	game_state.direction = rand() % 2;
-	game_state.last_card = NONE;
+	game_state.last_card = rand() % 10;
 	game_state.penalty = 0;
 	game_state.player = rand() % PLAYER_NUM + 1;
 	game_state.plus_four = 0;
