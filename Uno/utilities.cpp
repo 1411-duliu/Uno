@@ -22,6 +22,12 @@ void printGameState(STATE game_state)
 	printf("------------------\n");
 }
 
+int isSameCards(CARD card1, CARD card2)
+{
+
+	return ((card1.color == card2.color) && (card1.name == card2.name));
+}
+
 char * cardToStr(CARD card)
 {
 	char * str;
@@ -56,9 +62,25 @@ void printEntityCards(CARDSET CARDS[])
 	}
 }
 
+char * callCardMsg(int player, int n)
+{
+	char * msg;
+	
+	msg = (char *)malloc(sizeof(char) * 30);
+	strcpy(msg, "Íæ¼Ò");
+	int length = strlen(msg);
+	itoa(player, msg+length, 10);
+	strcat(msg, " ½ÐÅÆ ");
+	length = strlen(msg);
+	itoa(n, msg+length, 10);
+	strcat(msg, " ÕÅ.");
+
+	return msg;
+}
+
 char * playCardMsg(int player, CARD card)
 {
-	char * msg = (char *)malloc(sizeof(char)*50);
+	char * msg = (char *)malloc(sizeof(char) * 50);
 	strcpy(msg, "Íæ¼Ò");
 	
 	int len = strlen(msg);
@@ -76,6 +98,7 @@ char * colorToStr(int color)
 	return COLORS[color];
 }
 
+
 int strToColor(char * str)
 {
 	for (int i = 0; i <= 4; i++)
@@ -86,3 +109,4 @@ int strToColor(char * str)
 
 	return -1;
 }
+

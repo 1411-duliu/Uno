@@ -54,9 +54,12 @@ DWORD WINAPI mainThread(LPVOID pM)
 	
 	int player;
 
+
 	uiThread = CreateThread(NULL, 0, userInterfaceThread, NULL, 0, NULL);
 	messageListMutex = CreateMutex(NULL, FALSE, NULL);
 	
+	int call_flag = 0;
+
 	while (main_state != GAME_END)
 	{
 		player = game_state.player;
@@ -72,6 +75,17 @@ DWORD WINAPI mainThread(LPVOID pM)
 				card = NONE_CARD;
 				Sleep(1000);
 				main_state = SETTLE; // 进入结算状态
+				continue;
+			}
+
+			if (call_flag)
+				deleteFromCardset(&cards_to_play, CALL_CARD);
+
+			if (!cards_to_play.size)
+			{
+				main_state = ROUND_END;
+				addMsg("没有可以出的牌，回合结束");
+					
 				continue;
 			}
 			
@@ -97,7 +111,16 @@ DWORD WINAPI mainThread(LPVOID pM)
 
 			addMsg(playCardMsg(game_state.player, card));
 			
-			main_state = SETTLE;
+			if (isSameCards(CALL_CARD, card) && !call_flag)
+			{
+				call(&CARDS[0], &CARDS[player], player, 1);
+				call_flag = 1;
+				main_state = ROUND_START;
+				
+			}
+			else
+				main_state = SETTLE;
+
 			clearCardset(&cards_to_play);
 			
 		}
@@ -106,10 +129,9 @@ DWORD WINAPI mainThread(LPVOID pM)
 			settle(&game_state, card, &CARDS[player], &CARDS[0]);
 			printf("等待结算.\n");
 			Sleep(10);
-			// 写入日志
-			writeToLog(game_state, msgListPtr, CARDS, card);
+			
 
-			card = EMPTY_CARD;
+			// card = EMPTY_CARD;
 			main_state = ROUND_END;
 
 			
@@ -117,6 +139,11 @@ DWORD WINAPI mainThread(LPVOID pM)
 		}
 		else if (main_state == ROUND_END)
 		{
+			// 写入日志
+			writeToLog(game_state, msgListPtr, CARDS, card);
+			call_flag = 0;
+
+
 			int nplayer = game_state.player;
 
 			if (game_state.direction == 1)

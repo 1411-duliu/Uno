@@ -100,9 +100,6 @@
     <ClInclude Include="user_interface.h" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="log.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

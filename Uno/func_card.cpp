@@ -72,15 +72,7 @@ void call(CARDSET * cardset, CARDSET * player_cardset, int player, int n)
 		cardset->size--;
 	}
 
-	char msg[30];
-	strcpy(msg, "Íæ¼Ò");
-	int length = strlen(msg);
-	itoa(player, msg+length, 10);
-	strcat(msg, " ½ÐÅÆ ");
-	length = strlen(msg);
-	itoa(n, msg+length, 10);
-	strcat(msg, " ÕÅ.");
-	addMsg(msg);
+	addMsg(callCardMsg(player, n));
 }
 
 void none_card(STATE *game_state,CARDSET *cardset,CARDSET *player)
