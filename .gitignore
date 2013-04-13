@@ -4,6 +4,7 @@ Thunbs.db
 *.suo
 *.txt
 *.opensdf
+*.txt
 *.obj
 *.exe
 *.pdb
