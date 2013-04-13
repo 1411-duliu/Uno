@@ -157,7 +157,7 @@ DWORD WINAPI mainThread(LPVOID pM)
 	return 0;
 }
 
-void mainLoop()
+void main_loop()
 {
 	mainThreadHandle = CreateThread(NULL, 0, mainThread, NULL, 0, NULL);
 

@@ -12,7 +12,7 @@ int main(int argc, const char * argv[])
 	fprintf(fp, "New Log By Uno \n\n");
 	fclose(fp);
 
-	mainLoop();
+	main_loop();
 
 	system("pause");
     return 0;
