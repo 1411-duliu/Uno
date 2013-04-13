@@ -3,6 +3,7 @@ Thunbs.db
 #忽略Visual Studio生成时的产生的文件
 *.suo
 *.opensdf
+*.txt
 *.obj
 *.exe
 *.pdb
