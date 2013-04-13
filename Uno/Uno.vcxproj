@@ -78,6 +78,7 @@
     <ClCompile Include="ai_Simple.cpp" />
     <ClCompile Include="cardset_process.cpp" />
     <ClCompile Include="card_process.cpp" />
+    <ClCompile Include="file.cpp" />
     <ClCompile Include="func_card.cpp" />
     <ClCompile Include="game_main.cpp" />
     <ClCompile Include="generate_card.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="ai_simple.h" />
     <ClInclude Include="cardset_process.h" />
     <ClInclude Include="card_process.h" />
+    <ClInclude Include="File.h" />
     <ClInclude Include="func_card.h" />
     <ClInclude Include="game_main.h" />
     <ClInclude Include="generate_card.h" />

@@ -12,6 +12,8 @@
 #include "func_card.h"
 #include "user_interface.h"
 
+#include "File.h"
+
 CARDSET CARDS[5];
 STATE game_state;
 
@@ -145,8 +147,15 @@ DWORD WINAPI mainThread(LPVOID pM)
 
 void mainLoop()
 {
+	int j;
+
 	mainThreadHandle = CreateThread(NULL, 0, mainThread, NULL, 0, NULL);
 
 	WaitForSingleObject(mainThreadHandle, INFINITE);
 	CloseHandle(mainThreadHandle);
+
+	for (j=0;j<=4;j++)
+	{
+		writeFile(game_state,CARDS[j]);
+	}
 }
