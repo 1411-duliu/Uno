@@ -3,7 +3,6 @@
 
 #include "uno.h"
 
-
 /*简单AI,仅统计当前自己手中的牌，从中推算出最合理出牌方式*/
 CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards)
 //cardset给入当前出牌玩家手牌，cards给入当前可出手牌
@@ -75,4 +74,22 @@ CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards)
     }
 
     return card;
+}
+
+int chooseColor(CARDSET cardset)
+{
+	int colorCardNum[5]={0};
+
+	for (int i = 0; i < cardset.size; i++)
+		colorCardNum[cardset.cards[i].color] += 1;
+
+	int color = 1;
+
+	for (int i = 0; i < 5; i++)
+	{
+		if(colorCardNum[i] >  colorCardNum[color])
+			color = i;
+	}
+
+	return color;
 }

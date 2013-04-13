@@ -71,6 +71,11 @@ char * playCardMsg(int player, CARD card)
 	return msg;
 }
 
+char * colorToStr(int color)
+{
+	return COLORS[color];
+}
+
 int strToColor(char * str)
 {
 	for (int i = 0; i <= 4; i++)

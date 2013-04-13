@@ -5,5 +5,6 @@ char * cardToStr(CARD card); // 将CARD类型转换为字符串
 char * playCardMsg(int player, CARD card);
 void printCardset(CARDSET cardset);
 void printGameState(STATE game_state);
+char * colorToStr(int color);
 int strToColor(char * str);
 #endif

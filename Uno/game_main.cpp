@@ -5,6 +5,7 @@
 
 #include "uno.h"
 #include "generate_card.h"
+#include "ai_simple.h"
 #include "cardset_process.h"
 #include "card_process.h"
 #include "utilities.h"
@@ -19,13 +20,10 @@ CARDSET cards_to_play;
 
 MSGLISTNODEPTR msgListPtr = NULL, msgListTailPtr = NULL;
 
-
 HANDLE mainThreadHandle;
 HANDLE uiThread;
 HANDLE messageListMutex;
 HANDLE inputMutex;
-
-
 
 int main_state = 1;
 
@@ -65,6 +63,7 @@ DWORD WINAPI mainThread(LPVOID pM)
 		if (main_state == ROUND_START)
 		{
 			genCardsToPlay(&cards_to_play, game_state, CARDS[player]);
+			
 			if (hasThisCard(cards_to_play, NONE_CARD) && cards_to_play.size == 1)
 			{
 				// 如果可出的牌中只有1张NONE，那么不能出牌
@@ -74,19 +73,27 @@ DWORD WINAPI mainThread(LPVOID pM)
 				main_state = SETTLE; // 进入结算状态
 				continue;
 			}
+			
 			Sleep(1000);
 			main_state = PLAY_CARD;
 		}
 		else if (main_state == PLAY_CARD)
 		{
 			// WaitForSingleObject(inputMutex, INFINITE);
-			while (!(isValid(card = genCard(getInput())) && hasThisCard(cards_to_play, card)))
+			if (player == HUMAN)
 			{
-				addMsg("输入不合法，请重新输入。");
-				Sleep(1000);
+				while (!(isValid(card = genCard(getInput())) && hasThisCard(cards_to_play, card)))
+				{
+					addMsg("输入不合法，请重新输入。");
+					Sleep(1000);
+				}
 			}
-			
-			
+			else
+			{
+				Sleep(1000);
+				card = AI_SIMPLE(&CARDS[player], &cards_to_play);
+			}
+
 			addMsg(playCardMsg(game_state.player, card));
 			
 			main_state = SETTLE;
@@ -97,7 +104,7 @@ DWORD WINAPI mainThread(LPVOID pM)
 		{
 			settle(&game_state, card, &CARDS[player], &CARDS[0]);
 			printf("等待结算.\n");
-			Sleep(1000);
+			Sleep(10);
 			card = EMPTY_CARD;
 			main_state = ROUND_END;
 		}

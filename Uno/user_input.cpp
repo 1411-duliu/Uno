@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <windows.h>
 
 #include "uno.h"
+#include "ai_simple.h"
+#include "user_interface.h"
 #include "utilities.h"
 
 char input[1000];
@@ -11,6 +14,9 @@ extern HANDLE mainThreadHandle;
 
 extern HANDLE uiThread;
 extern HANDLE inputMutex;
+
+extern STATE game_state;
+extern CARDSET CARDS[5];
 
 int change_color = 0;
 
@@ -52,6 +58,24 @@ char * getInput()
 
 int getColor()
 {
-	change_color = 1;
-	return strToColor(getInput());
+	int color;
+
+	char msg[20];
+
+	if (game_state.player == HUMAN)
+	{
+		change_color = 1;
+		color = strToColor(getInput());
+	}
+	else
+		color = chooseColor(CARDS[game_state.player]);
+
+	strcpy(msg, "ÑÕÉ«±äÎª£º ");
+	int length = strlen(msg);
+	strcpy(msg + length, colorToStr(color));
+	length = strlen(msg);
+	strcpy(msg + length, "\0");  
+	addMsg(msg);
+
+	return color;
 }
