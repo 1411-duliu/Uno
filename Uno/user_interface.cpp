@@ -12,7 +12,7 @@ extern CARDSET CARDS[5];
 extern CARDSET cards_to_play;
 
 extern HANDLE inputMutex, messageListMutex;
-extern MSGLISTNODEPTR msgListPtr, msgListTailPtr;
+extern MSGLISTNODEPTR msgListPtr;
 
 extern CARD card;
 
@@ -30,12 +30,11 @@ void addMsg(char * msg)
 	if (msgListPtr == NULL)
 	{
 		msgListPtr = newPtr;
-		msgListTailPtr = msgListPtr;
 	}
 	else
 	{
-		msgListTailPtr->nextPtr = newPtr;
-		msgListTailPtr = newPtr;
+		newPtr->nextPtr = msgListPtr;
+		msgListPtr = newPtr;
 	}
 
 	ReleaseMutex(messageListMutex);
@@ -63,12 +62,14 @@ void printMsg()
 	WaitForSingleObject(messageListMutex, INFINITE);
 	MSGLISTNODEPTR currentPtr = msgListPtr, tmp;
 	
+	int count = 0;
+
 	printf("消息列表:\n");
-	while (currentPtr != NULL)
+	while (currentPtr != NULL && count < MAX_MSG_NUM)
 	{
 		printf("Msg: %s\n", currentPtr->msg);
 		currentPtr = currentPtr->nextPtr;
-		
+		count++;
 	}
 	printf("----------------\n");
 

@@ -64,20 +64,28 @@ void wild(STATE *game_state)
 	changeColor(game_state, color);
 }
 
-void call(CARDSET * cardset, CARDSET * player, int n)
+void call(CARDSET * cardset, CARDSET * player_cardset, int player, int n)
 {
     for(int i = 1; i <= n; i++)
     {
-		insertToCardset(player, cardset->cards[cardset->size - 1]);
+		insertToCardset(player_cardset, cardset->cards[cardset->size - 1]);
 		cardset->size--;
-
-		addMsg("½ÐÅÆ1ÕÅ");
 	}
+
+	char msg[30];
+	strcpy(msg, "Íæ¼Ò");
+	int length = strlen(msg);
+	itoa(player, msg+length, 10);
+	strcat(msg, " ½ÐÅÆ ");
+	length = strlen(msg);
+	itoa(n, msg+length, 10);
+	strcat(msg, " ÕÅ.");
+	addMsg(msg);
 }
 
 void none_card(STATE *game_state,CARDSET *cardset,CARDSET *player)
 {
-    call(cardset, player, game_state->penalty);
+	call(cardset, player, game_state->player ,game_state->penalty);
 
 	game_state->plus_two = 0;
 	game_state->penalty = 0;
@@ -106,7 +114,7 @@ void settle(STATE * game_state, CARD card, CARDSET * player_cards, CARDSET * all
 		game_state->last_card = card.name;
 	}
 
-	if (card.name == CALL) call(all_cards, player_cards, 1);
+	if (card.name == CALL) call(all_cards, player_cards, game_state->player, 1);
 	if (card.name == NONE) none_card(game_state, all_cards, player_cards);
 
 }

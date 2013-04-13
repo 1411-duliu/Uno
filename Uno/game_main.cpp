@@ -11,6 +11,7 @@
 #include "utilities.h"
 #include "user_input.h"
 #include "func_card.h"
+#include "log_write.h"
 #include "user_interface.h"
 
 CARDSET CARDS[5];
@@ -18,7 +19,7 @@ STATE game_state;
 
 CARDSET cards_to_play;
 
-MSGLISTNODEPTR msgListPtr = NULL, msgListTailPtr = NULL;
+MSGLISTNODEPTR msgListPtr = NULL;
 
 HANDLE mainThreadHandle;
 HANDLE uiThread;
@@ -105,8 +106,14 @@ DWORD WINAPI mainThread(LPVOID pM)
 			settle(&game_state, card, &CARDS[player], &CARDS[0]);
 			printf("等待结算.\n");
 			Sleep(10);
+			// 写入日志
+			writeToLog(game_state, msgListPtr, CARDS, card);
+
 			card = EMPTY_CARD;
 			main_state = ROUND_END;
+
+			
+			
 		}
 		else if (main_state == ROUND_END)
 		{
@@ -156,4 +163,6 @@ void mainLoop()
 
 	WaitForSingleObject(mainThreadHandle, INFINITE);
 	CloseHandle(mainThreadHandle);
+
+	delMsg();
 }

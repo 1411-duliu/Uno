@@ -45,6 +45,9 @@
     <ClCompile Include="game_main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="log_write.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="generate_card.h">
@@ -77,5 +80,13 @@
     <ClInclude Include="game_main.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="log_write.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log.txt">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,0 +1,449 @@
+New Log By Uno 
+
+
+消息列表:
+Msg: 颜色变为： YELLOW
+Msg: 玩家4 打出了 NONE,PLUS4
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: YELLOW	card: NONE	player: 4
+--> Penalties
+plus_two: 0	plus_four: 1	penalty: 4	skip: 0
+------------------
+--> PLAYER 1 --> 7 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,4 | - 4 -        YELLOW,3 | - 5 -    BLUE,REVERSE | 
+- 6 -        YELLOW,0 | 
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 7 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | 
+--> PLAYER 4 --> 6 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+
+玩家4 打出了 NONE,PLUS4
+回合结束. 
+
+
+消息列表:
+Msg: 玩家1 叫牌 4 张.
+Msg: 本局不能出牌，进入结算阶段。
+Msg: 颜色变为： YELLOW
+Msg: 玩家4 打出了 NONE,PLUS4
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: YELLOW	card: NONE	player: 1
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 11 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,4 | - 4 -        YELLOW,3 | - 5 -    BLUE,REVERSE | 
+- 6 -        YELLOW,0 | - 7 -        YELLOW,1 | - 8 -        YELLOW,8 | 
+- 9 -         GREEN,7 | - 10 -         GREEN,8 | 
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 7 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | 
+--> PLAYER 4 --> 6 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+
+玩家1 打出了 NONE,NONE
+回合结束. 
+
+
+消息列表:
+Msg: 玩家2 叫牌 1 张.
+Msg: 玩家2 打出了 NONE,CALL
+Msg: 玩家1 叫牌 4 张.
+Msg: 本局不能出牌，进入结算阶段。
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: YELLOW	card: NONE	player: 2
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 11 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,4 | - 4 -        YELLOW,3 | - 5 -    BLUE,REVERSE | 
+- 6 -        YELLOW,0 | - 7 -        YELLOW,1 | - 8 -        YELLOW,8 | 
+- 9 -         GREEN,7 | - 10 -         GREEN,8 | 
+--> PLAYER 2 --> 8 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | - 7 -       NONE,WILD | 
+--> PLAYER 3 --> 7 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | 
+--> PLAYER 4 --> 6 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+
+玩家2 打出了 NONE,CALL
+回合结束. 
+
+
+消息列表:
+Msg: 玩家3 叫牌 1 张.
+Msg: 玩家3 打出了 NONE,CALL
+Msg: 玩家2 叫牌 1 张.
+Msg: 玩家2 打出了 NONE,CALL
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: YELLOW	card: NONE	player: 3
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 11 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,4 | - 4 -        YELLOW,3 | - 5 -    BLUE,REVERSE | 
+- 6 -        YELLOW,0 | - 7 -        YELLOW,1 | - 8 -        YELLOW,8 | 
+- 9 -         GREEN,7 | - 10 -         GREEN,8 | 
+--> PLAYER 2 --> 8 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | - 7 -       NONE,WILD | 
+--> PLAYER 3 --> 8 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | 
+--> PLAYER 4 --> 6 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+
+玩家3 打出了 NONE,CALL
+回合结束. 
+
+
+消息列表:
+Msg: 玩家4 叫牌 1 张.
+Msg: 玩家4 打出了 NONE,CALL
+Msg: 玩家3 叫牌 1 张.
+Msg: 玩家3 打出了 NONE,CALL
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: YELLOW	card: NONE	player: 4
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 11 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,4 | - 4 -        YELLOW,3 | - 5 -    BLUE,REVERSE | 
+- 6 -        YELLOW,0 | - 7 -        YELLOW,1 | - 8 -        YELLOW,8 | 
+- 9 -         GREEN,7 | - 10 -         GREEN,8 | 
+--> PLAYER 2 --> 8 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | - 7 -       NONE,WILD | 
+--> PLAYER 3 --> 8 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | 
+--> PLAYER 4 --> 7 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | 
+玩家4 打出了 NONE,CALL
+回合结束. 
+
+
+消息列表:
+Msg: 玩家1 打出了 YELLOW,4
+Msg: 玩家4 叫牌 1 张.
+Msg: 玩家4 打出了 NONE,CALL
+Msg: 玩家3 叫牌 1 张.
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: YELLOW	card: 4	player: 1
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 10 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,3 | - 4 -    BLUE,REVERSE | - 5 -        YELLOW,0 | 
+- 6 -        YELLOW,1 | - 7 -        YELLOW,8 | - 8 -         GREEN,7 | 
+- 9 -         GREEN,8 | 
+--> PLAYER 2 --> 8 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | - 7 -       NONE,WILD | 
+--> PLAYER 3 --> 8 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | 
+--> PLAYER 4 --> 7 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | 
+玩家1 打出了 YELLOW,4
+回合结束. 
+
+
+消息列表:
+Msg: 颜色变为： RED
+Msg: 玩家2 打出了 NONE,WILD
+Msg: 玩家1 打出了 YELLOW,4
+Msg: 玩家4 叫牌 1 张.
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: RED	card: 4	player: 2
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 10 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,3 | - 4 -    BLUE,REVERSE | - 5 -        YELLOW,0 | 
+- 6 -        YELLOW,1 | - 7 -        YELLOW,8 | - 8 -         GREEN,7 | 
+- 9 -         GREEN,8 | 
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 8 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | 
+--> PLAYER 4 --> 7 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | 
+玩家2 打出了 NONE,WILD
+回合结束. 
+
+
+消息列表:
+Msg: 玩家3 叫牌 1 张.
+Msg: 玩家3 打出了 NONE,CALL
+Msg: 颜色变为： RED
+Msg: 玩家2 打出了 NONE,WILD
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: RED	card: 4	player: 3
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 10 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,3 | - 4 -    BLUE,REVERSE | - 5 -        YELLOW,0 | 
+- 6 -        YELLOW,1 | - 7 -        YELLOW,8 | - 8 -         GREEN,7 | 
+- 9 -         GREEN,8 | 
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 9 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | - 8 -      NONE,PLUS4 | 
+
+--> PLAYER 4 --> 7 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | 
+玩家3 打出了 NONE,CALL
+回合结束. 
+
+
+消息列表:
+Msg: 玩家4 叫牌 1 张.
+Msg: 玩家4 打出了 NONE,CALL
+Msg: 玩家3 叫牌 1 张.
+Msg: 玩家3 打出了 NONE,CALL
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 1	color: RED	card: 4	player: 4
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 10 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -     RED,REVERSE | 
+- 3 -        YELLOW,3 | - 4 -    BLUE,REVERSE | - 5 -        YELLOW,0 | 
+- 6 -        YELLOW,1 | - 7 -        YELLOW,8 | - 8 -         GREEN,7 | 
+- 9 -         GREEN,8 | 
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 9 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | - 8 -      NONE,PLUS4 | 
+
+--> PLAYER 4 --> 8 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | - 7 -          BLUE,7 | 
+玩家4 打出了 NONE,CALL
+回合结束. 
+
+
+消息列表:
+Msg: 玩家1 打出了 RED,REVERSE
+Msg: 玩家4 叫牌 1 张.
+Msg: 玩家4 打出了 NONE,CALL
+Msg: 玩家3 叫牌 1 张.
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 0	color: RED	card: REVERSE	player: 1
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 9 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -        YELLOW,3 | 
+- 3 -    BLUE,REVERSE | - 4 -        YELLOW,0 | - 5 -        YELLOW,1 | 
+- 6 -        YELLOW,8 | - 7 -         GREEN,7 | - 8 -         GREEN,8 | 
+
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 9 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | - 8 -      NONE,PLUS4 | 
+
+--> PLAYER 4 --> 8 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | - 7 -          BLUE,7 | 
+玩家1 打出了 RED,REVERSE
+回合结束. 
+
+
+消息列表:
+Msg: 玩家4 叫牌 1 张.
+Msg: 玩家4 打出了 NONE,CALL
+Msg: 玩家1 打出了 RED,REVERSE
+Msg: 玩家4 叫牌 1 张.
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 0	color: RED	card: REVERSE	player: 4
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 9 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -        YELLOW,3 | 
+- 3 -    BLUE,REVERSE | - 4 -        YELLOW,0 | - 5 -        YELLOW,1 | 
+- 6 -        YELLOW,8 | - 7 -         GREEN,7 | - 8 -         GREEN,8 | 
+
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 9 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | - 8 -      NONE,PLUS4 | 
+
+--> PLAYER 4 --> 9 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | - 7 -          BLUE,7 | - 8 -    YELLOW,PLUS2 | 
+
+玩家4 打出了 NONE,CALL
+回合结束. 
+
+
+消息列表:
+Msg: 颜色变为： GREEN
+Msg: 玩家3 打出了 NONE,PLUS4
+Msg: 玩家4 叫牌 1 张.
+Msg: 玩家4 打出了 NONE,CALL
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 0	color: GREEN	card: REVERSE	player: 3
+--> Penalties
+plus_two: 0	plus_four: 1	penalty: 4	skip: 0
+------------------
+--> PLAYER 1 --> 9 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -        YELLOW,3 | 
+- 3 -    BLUE,REVERSE | - 4 -        YELLOW,0 | - 5 -        YELLOW,1 | 
+- 6 -        YELLOW,8 | - 7 -         GREEN,7 | - 8 -         GREEN,8 | 
+
+--> PLAYER 2 --> 7 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | 
+--> PLAYER 3 --> 8 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | 
+--> PLAYER 4 --> 9 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | - 7 -          BLUE,7 | - 8 -    YELLOW,PLUS2 | 
+
+玩家3 打出了 NONE,PLUS4
+回合结束. 
+
+
+消息列表:
+Msg: 玩家2 叫牌 4 张.
+Msg: 本局不能出牌，进入结算阶段。
+Msg: 颜色变为： GREEN
+Msg: 玩家3 打出了 NONE,PLUS4
+----------------
+
+=== GAME_STATE ===
+--> Basic State
+direction: 0	color: GREEN	card: REVERSE	player: 2
+--> Penalties
+plus_two: 0	plus_four: 0	penalty: 0	skip: 0
+------------------
+--> PLAYER 1 --> 9 cards 
+- 0 -         GREEN,9 | - 1 -        YELLOW,8 | - 2 -        YELLOW,3 | 
+- 3 -    BLUE,REVERSE | - 4 -        YELLOW,0 | - 5 -        YELLOW,1 | 
+- 6 -        YELLOW,8 | - 7 -         GREEN,7 | - 8 -         GREEN,8 | 
+
+--> PLAYER 2 --> 11 cards 
+- 0 -  YELLOW,REVERSE | - 1 -   GREEN,REVERSE | - 2 -       RED,PLUS2 | 
+- 3 -         GREEN,2 | - 4 -           RED,1 | - 5 -           RED,0 | 
+- 6 -        YELLOW,6 | - 7 -      GREEN,SKIP | - 8 -       RED,PLUS2 | 
+- 9 -          BLUE,7 | - 10 -      NONE,PLUS4 | 
+--> PLAYER 3 --> 8 cards 
+- 0 -        RED,SKIP | - 1 -         GREEN,8 | - 2 -          BLUE,4 | 
+- 3 -          BLUE,3 | - 4 -     GREEN,PLUS2 | - 5 -          BLUE,1 | 
+- 6 -    YELLOW,PLUS2 | - 7 -         GREEN,9 | 
+--> PLAYER 4 --> 9 cards 
+- 0 -        YELLOW,1 | - 1 -           RED,8 | - 2 -        YELLOW,2 | 
+- 3 -     YELLOW,SKIP | - 4 -         GREEN,5 | - 5 -           RED,6 | 
+- 6 -          BLUE,6 | - 7 -          BLUE,7 | - 8 -    YELLOW,PLUS2 | 
+
+玩家2 打出了 NONE,NONE
+回合结束. 
+

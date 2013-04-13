@@ -81,6 +81,7 @@
     <ClCompile Include="func_card.cpp" />
     <ClCompile Include="game_main.cpp" />
     <ClCompile Include="generate_card.cpp" />
+    <ClCompile Include="log_write.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="user_input.cpp" />
     <ClCompile Include="user_interface.cpp" />
@@ -93,10 +94,14 @@
     <ClInclude Include="func_card.h" />
     <ClInclude Include="game_main.h" />
     <ClInclude Include="generate_card.h" />
+    <ClInclude Include="log_write.h" />
     <ClInclude Include="uno.h" />
     <ClInclude Include="user_input.h" />
     <ClInclude Include="user_interface.h" />
     <ClInclude Include="utilities.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
