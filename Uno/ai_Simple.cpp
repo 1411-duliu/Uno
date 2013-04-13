@@ -10,11 +10,7 @@ CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards)
     CARD card={0,0},currentCard;
     int i,j,temp,isFunction=0;
     int count_Function=0,count_Num=0;
-    int count_Color[5],array[5]={0,1,2,3,4};
-
-    /*当前若有且仅有一张牌可以出，则打出它*/
-    if(cards->size==1)
-        return cards->cards[0];
+    int count_Color[5],compare[5]={0,1,2,3,4};
 
     /*统计当前玩家手牌中的牌种类*/
     for(i=0;i<=cardset->size-1;i++){
@@ -32,9 +28,9 @@ CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards)
     for(i=0;i<=3;i++){   //冒泡排序对四种颜色牌按数量进行递减排序
         for(j=1;j<=3;j++){
             if(count_Color[j]<count_Color[j+1]){
-                temp=array[j];         //array数组标号为颜色
-                array[j]=array[j+1];   //array数组中存放大小顺序
-                array[j+1]=temp;
+                temp=compare[j];         //array数组标号为颜色
+                compare[j]=compare[j+1];   //array数组中存放大小顺序
+                compare[j+1]=temp;
             }
         }              //处理结果为array数组中存放数字越小，对应颜色拥有数越高
     }
@@ -62,14 +58,14 @@ CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards)
         }
     }
     else{  //其它情况只能出数字牌
-        for(j=0;j<=cards->size-1;j++){
+		card=cards->cards[0];
+
+        for(j=1;j<=cards->size-2;j++){
             currentCard=cards->cards[j];
-            if(j==0)
-                card=currentCard;
-            else{
-                if(array[currentCard.color]<card.color)  //选择比重最大的颜色优先进行出牌
-                    card=currentCard;
-            }
+			if(currentCard.color!=11){
+				if(compare[currentCard.color]<compare[card.color])  //选择比重最大的颜色优先进行出牌
+					card=currentCard;
+			} 
         }
     }
 
