@@ -8,9 +8,6 @@
 
 int main(int argc, const char * argv[])
 {
-	FILE * fp = fopen("log.txt", "w+");
-	fprintf(fp, "New Log By Uno \n\n");
-	fclose(fp);
 
 	main_loop();
 

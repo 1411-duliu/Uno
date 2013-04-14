@@ -16,6 +16,16 @@ extern MSGLISTNODEPTR msgListPtr;
 
 extern CARD card;
 
+void printCardsetSizes()
+{
+	printf("# 牌堆剩余： %d | ", CARDS[0].size);
+	for (int i = 1; i <= 4; i++)
+	{
+		printf("玩家 %d ： %d | ", i, CARDS[i].size);
+	}
+	printf("\n");
+}
+
 void addMsg(char * msg)
 {
 	WaitForSingleObject(messageListMutex, INFINITE);
@@ -78,15 +88,22 @@ void printMsg()
 
 void printUI()
 {
-	
-	printGameState(game_state);
-	printf("你的手牌列表：\n");
-	printCardset(CARDS[game_state.player]);
-	if(cards_to_play.size > 0)
+	printCardsetSizes();
+	printf("# 当前颜色 ： %s \n", colorToStr(game_state.color));
+	if (game_state.player == HUMAN)
 	{
-		printf("你可以出下列牌：\n");
-		printCardset(cards_to_play);
+		// printGameState(game_state);
+		printf("\n 你的回合..\n"
+				"=========================\n");
+		printCardset(CARDS[game_state.player]);
+		//if(cards_to_play.size > 0)
+		//{
+		//	printf("你可以出下列牌：\n");
+		//	printCardset(cards_to_play);
+		//}
 	}
+	else
+		printf("请等待玩家 %d 出牌...\n", game_state.player);
 }
 
 DWORD WINAPI userInterfaceThread(LPVOID pM)
