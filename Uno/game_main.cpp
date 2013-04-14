@@ -223,8 +223,8 @@ DWORD WINAPI mainThread(LPVOID pM)
 		else if (main_state == SETTLE)
 		{
 			settle(&game_state, card, &CARDS[player], &CARDS[0]);
-			insertToCardset(&CARDS[0], card);
-			insertToCardset(&CARDS[player], card);
+			insertToCardset(&TRASH[0], card);
+			insertToCardset(&TRASH[player], card);
 			
 			printf("µÈ´ý½áËã.\n");
 			Sleep(100);

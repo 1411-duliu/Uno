@@ -13,7 +13,7 @@
 #define GREEN	1
 #define RED		2
 #define	YELLOW	3
-#define	BLUE		4
+#define	BLUE	4
 #define INVALID	1411
 
 #define PLAYER_NUM	4
