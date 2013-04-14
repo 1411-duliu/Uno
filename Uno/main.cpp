@@ -8,8 +8,7 @@
 
 int main(int argc, const char * argv[])
 {
-
-	main_loop();
+	main_loop(); // 进入游戏主循环
 
 	system("pause");
     return 0;

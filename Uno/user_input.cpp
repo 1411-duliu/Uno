@@ -25,7 +25,7 @@ DWORD WINAPI inputThread(LPVOID pM)
 	strcpy(input, "");
 	
 	SuspendThread(mainThreadHandle);
-	Sleep(100);
+	Sleep(200);
 	SuspendThread(uiThread);
 	if (change_color) 
 	{

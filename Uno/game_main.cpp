@@ -1,3 +1,16 @@
+/*
+ * game_main.cpp
+ *
+ * 游戏主线程
+ *
+ * 控制游戏主要过程，初始化游戏，游戏结束后的清理工作。
+ *
+ */
+
+// 
+// ---------------------------------------
+// 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
@@ -14,26 +27,76 @@
 #include "log_write.h"
 #include "user_interface.h"
 
-CARDSET CARDS[5];
-STATE game_state;
 
-CARDSET cards_to_play;
+/* 牌组相关变量 */
 
-MSGLISTNODEPTR msgListPtr = NULL;
+CARDSET CARDS[PLAYER_NUM + 1]; // CARDS[0] 牌堆 // CARDS[1~PLAYER_NUM] 用户手牌
+CARDSET cards_to_play; // 可以出的牌
+CARD card; // 用户选择的牌
+CARDSET TRASH[PLAYER_NUM + 1]; // 用户弃牌堆
+
+/* 用户界面相关变量 */
+
+MSGLISTNODEPTR msgListPtr = NULL; // 消息列表
+
+/* 线程相关变量 */
 
 HANDLE mainThreadHandle;
 HANDLE uiThread;
 HANDLE messageListMutex;
 HANDLE inputMutex;
 
-int main_state = 1;
+/* 游戏状态相关变量 */
+
+STATE game_state; // 游戏状态
+
+int main_state = 1; // 主线程自动机状态
+
+/* 可能要用到的常量 */
 
 CARD NONE_CARD = {CNONE, NONE};
 CARD INVALID_CARD = {CNONE, INVALID};
 CARD CALL_CARD = {CNONE, CALL};
 CARD EMPTY_CARD = {0, 0};
 
-CARD card;
+
+// STATE init_state()
+// ---------------------------------------
+// 生成游戏初始状态
+
+STATE init_state()
+{
+	STATE game_state;
+
+	srand((unsigned int)time(NULL));
+	
+	game_state.color = rand() % 4 + 1; // 生成颜色
+	game_state.direction = 1; // 生成方向
+	game_state.last_card = NONE; // 前一张牌置为空
+	game_state.penalty = 0; // 惩罚牌数设为零
+	game_state.player = rand() % PLAYER_NUM + 1; // 设置初始牌组
+	game_state.plus_four = 0;
+	game_state.plus_two = 0;
+	game_state.skip = 0;
+
+	return game_state;
+}
+
+// void init_log()
+// ---------------------------------------
+// 初始化日志文件
+
+void init_log()
+{
+	FILE * fp = fopen("log.txt", "w+");
+	fprintf(fp, "Uno Log \n"
+				"\n=====================\n");
+	fclose(fp);
+}
+
+// void init_game()
+// ---------------------------------------
+// 初始化游戏
 
 void init_game()
 {
@@ -44,8 +107,17 @@ void init_game()
 
 	game_state = init_state();
 	card = EMPTY_CARD;
+
+	for (int i = 0; i <= PLAYER_NUM; i++)
+		clearCardset(&TRASH[i]);
+
+	init_log();
 	
 }
+
+// int getNextPlayer(STATE)
+// ---------------------------------------
+// 根据传入的游戏状态，得出下回合玩家的编号。
 
 int getNextPlayer(STATE game_state)
 {
@@ -59,14 +131,20 @@ int getNextPlayer(STATE game_state)
 			nplayer += 1;
 	}
 	else
+	{
 		if (nplayer == 1)
 			nplayer = PLAYER_NUM;
 		else
 			nplayer -= 1;
+	}
 
 	return nplayer;
 }
 
+
+// DWORD WINAPI mainThread(LPVOID pM)
+// ---------------------------------------
+// 游戏主线程。
 
 DWORD WINAPI mainThread(LPVOID pM)
 {
@@ -97,7 +175,7 @@ DWORD WINAPI mainThread(LPVOID pM)
 				continue;
 			}
 
-			if (call_flag) // 如果之前已经交过一次牌则把 CALL 从可出牌中删除
+			if (call_flag) // 如果之前已经叫过一次牌则把 CALL 从可出牌中删除
 				deleteFromCardset(&cards_to_play, CALL_CARD);
 
 			if (!cards_to_play.size) // 如果没有可出的牌（即在叫过一次牌后），则直接进入回合结束状态
@@ -145,6 +223,9 @@ DWORD WINAPI mainThread(LPVOID pM)
 		else if (main_state == SETTLE)
 		{
 			settle(&game_state, card, &CARDS[player], &CARDS[0]);
+			insertToCardset(&CARDS[0], card);
+			insertToCardset(&CARDS[player], card);
+			
 			printf("等待结算.\n");
 			Sleep(100);
 
@@ -166,7 +247,7 @@ DWORD WINAPI mainThread(LPVOID pM)
 				game_state.player = nplayer;
 				main_state = ROUND_START;
 			}	
-			Sleep(1000);
+			Sleep(100);
 		}
 		else if (main_state == GAME_END)
 		{
@@ -182,42 +263,18 @@ DWORD WINAPI mainThread(LPVOID pM)
 	return 0;
 }
 
-
-
-STATE init_state()
-{
-	STATE game_state;
-
-	srand((unsigned int)time(NULL));
-	
-	game_state.color = rand() % 4 + 1;
-	game_state.direction = 1;
-	game_state.last_card = NONE;
-	game_state.penalty = 0;
-	game_state.player = rand() % PLAYER_NUM + 1;
-	game_state.plus_four = 0;
-	game_state.plus_two = 0;
-	game_state.skip = 0;
-
-	return game_state;
-}
-
-void init_log()
-{
-	FILE * fp = fopen("log.txt", "w+");
-	fprintf(fp, "Uno Log \n"
-				"\n=====================\n");
-	fclose(fp);
-}
+// void main_loop()
+// ---------------------------------------
+// 开启游戏主线程
 
 void main_loop()
 {
-	init_log();
-
+	// 生成并开启主线程
 	mainThreadHandle = CreateThread(NULL, 0, mainThread, NULL, 0, NULL);
-
+	// 等待主线程结束
 	WaitForSingleObject(mainThreadHandle, INFINITE);
+	// 关闭线程
 	CloseHandle(mainThreadHandle);
-
+	// 清空消息队列
 	delMsg();
 }
