@@ -145,7 +145,7 @@ DWORD WINAPI userInterfaceThread(LPVOID pM)
 
 			case GAME_END:
 				Sleep(10);
-				printf("玩家 %d 赢得了本局比赛。");
+				printf("\n玩家 %d 赢得了本局比赛。\n", game_state.player);
 				main_state = 6;
 				break;
 		}
