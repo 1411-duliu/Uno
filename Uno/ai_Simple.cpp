@@ -72,6 +72,7 @@ CARD AI_SIMPLE(CARDSET *cardset,CARDSET *cards)
     return card;
 }
 
+/*打出wild或+4时选择对自己最有利的颜色*/
 int chooseColor(CARDSET cardset)
 {
 	int colorCardNum[5]={0};

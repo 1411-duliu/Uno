@@ -48,6 +48,9 @@
     <ClCompile Include="log_write.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ai_hard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="generate_card.h">
@@ -81,6 +84,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="log_write.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ai_hard.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
